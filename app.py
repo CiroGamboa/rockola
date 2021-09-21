@@ -2,7 +2,19 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+# 'postgresql://<usuario>:<contraseña>@<direccion de la db>:<puerto>/<nombre de la db>
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/rockoladb'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'some-secret-key'
+
 db = SQLAlchemy(app)
+
+# Importar los modelos
+from models import Song
+
+# Crear el esquema de la DB
+db.create_all()
+db.session.commit()
 
 # Rutas de paginas
 @app.route('/')
@@ -24,6 +36,19 @@ def crud_song():
     if request.method == 'GET':
         # Hago algo
         print("Llegó un GET")
+
+        # insertar canción
+        name = "Imagine"
+        artist = "John Lennon"
+        genre = "Rock"
+        album = "Imagine"
+        year = 1971
+        link = "https://www.youtube.com/watch?v=YkgkThdzX-8"
+
+        entry = Song(name,artist,genre,album,year,link)
+        db.session.add(entry)
+        db.session.commit()
+
         return 'Esto fue un GET'
 
     elif request.method == 'POST':
