@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room</title>
+</head>
+<body>
+    <h1>Rockola Room</h1>
+    <form action="{{url_for('create_room')}}" method="post">
+        <h5>Enter the room code</h5>
+        <div>
+            <input type="text" name="room_code" placeholder="Code">
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+
+
+
+</body>
+</html>

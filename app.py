@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -17,17 +17,30 @@ db.create_all()
 db.session.commit()
 
 # Rutas de paginas
-@app.route('/')
-def get_home():
-    return 'Este es el home'
-
-@app.route('/signup')
-def sign_up():
-    return 'Esta es la pagina de registro'
 
 @app.route('/room')
 def enter_room():
-    return 'Esta es la pagina de una sala'
+    return render_template("room.html")
+
+@app.route('/create-room', methods=['POST'])
+def create_room():
+    room_code = request.form["room_code"]
+    print("El codigo de sala es")
+    print(room_code)
+
+    # Insertar en DB
+    return "ok"
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Rutas de otras acciones
