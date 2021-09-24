@@ -10,13 +10,28 @@ app.secret_key = 'some-secret-key'
 db = SQLAlchemy(app)
 
 # Importar los modelos
-from models import Song
+from models import Song, User, Room
 
 # Crear el esquema de la DB
 db.create_all()
 db.session.commit()
 
 # Rutas de paginas
+@app.route('/register')
+def register():
+    return render_template("register.html")
+
+
+@app.route('/create-user', methods=['POST'])
+def create_user():
+    email = request.form["email"]
+    password = request.form["password"]
+
+    user = User(email, password)
+    db.session.add(user)
+    db.session.commit()
+    return "ok"
+
 
 @app.route('/room')
 def enter_room():
@@ -28,8 +43,9 @@ def create_room():
     print("El codigo de sala es")
     print(room_code)
 
-    # Insertar en DB
     return "ok"
+
+
 
 
 
