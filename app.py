@@ -5,7 +5,7 @@ app = Flask(__name__)
 # 'postgresql://<usuario>:<contraseña>@<direccion de la db>:<puerto>/<nombre de la db>
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/rockoladb'
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'some-secret-key'
+app.secret_key = 'some-secret-key' 
 
 #db = SQLAlchemy(app)
 
