@@ -18,7 +18,7 @@ app.secret_key = 'some-secret-key'
 
 # Rutas de paginas
 @app.route('/')
-def example():
+def home():
     return "This works"
 
 @app.route('/example')
