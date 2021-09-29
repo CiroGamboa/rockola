@@ -17,6 +17,12 @@ db.create_all()
 db.session.commit()
 
 # Rutas de paginas
+@app.route('/')
+def example():
+    return "This works"
+
+
+
 @app.route('/example')
 def example():
     return render_template("example.html")
