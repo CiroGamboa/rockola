@@ -1,20 +1,21 @@
 from flask import Flask, request, render_template
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 # 'postgresql://<usuario>:<contraseña>@<direccion de la db>:<puerto>/<nombre de la db>
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/rockoladb'
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kpscxiacltqsts:30ef25cb725943dfc045b1322884a1ab57972f16e79b4173f62bcd35d315a63a@ec2-34-199-209-37.compute-1.amazonaws.com:5432/dd4fine3h84jbt'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'some-secret-key' 
 
-#db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 # Importar los modelos
-#from models import Song, User, Room
+from models import Song, User, Room
 
 # Crear el esquema de la DB
-#db.create_all()
-#db.session.commit()
+db.create_all()
+db.session.commit()
 
 # Rutas de paginas
 @app.route('/')
@@ -25,7 +26,7 @@ def home():
 def example():
     return render_template("example.html")
 
-'''
+
 @app.route('/register')
 def register():
     return render_template("register.html")
@@ -130,7 +131,7 @@ def delete_song():
     db.session.commit()
     return "Se borro la canción"
 
-'''
+
 
 if __name__ == "__main__":
     app.run()
