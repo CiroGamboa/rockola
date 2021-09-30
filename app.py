@@ -68,7 +68,7 @@ def create_room():
 
 
 
-
+'''
 # Rutas de otras acciones
 @app.route('/song', methods=['GET','POST'])
 def crud_song():
@@ -130,7 +130,7 @@ def delete_song():
     db.session.delete(song)
     db.session.commit()
     return "Se borro la canción"
-
+'''
 
 
 if __name__ == "__main__":
